@@ -1,5 +1,4 @@
-data/conf
-data/certbot/www
+www
 data/nginx/logs
 bstockmanager.com
 test.bstockmanager.com
