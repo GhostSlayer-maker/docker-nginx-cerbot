@@ -1,5 +1,5 @@
 data/conf
 data/certbot/www
 data/nginx/logs
-data/certbot/certificate/bstockmanager.com
-data/certbot/certificate/test.bstockmanager.com
+bstockmanager.com
+test.bstockmanager.com
