@@ -10,7 +10,7 @@ services:
       - "443:443"                   # HTTPS port mapping
     volumes:
       - ./data/nginx/nginx.conf:/etc/nginx/conf.d/default.conf  # Configuración de Nginx
-      - ./data/certbot/certificate:/etc/letsencrypt  # Certificados SSL
+      - ./data/certbot/certificate/live:/etc/letsencrypt  # Certificados SSL
       - ./data/certbot/www:/var/www/certbot  # Desafíos de Certbot
       - ./data/nginx/logs:/var/log/nginx          # logs
 
@@ -19,13 +19,14 @@ services:
     image: certbot/certbot:latest    # Uses the official Certbot image
     container_name: certbot          # Explicitly names the container for easier reference
     volumes:
-      - ./data/certbot/certificate:/etc/letsencrypt  # Certificados SSL
+      - ./data/certbot/certificate/live:/etc/letsencrypt  # Certificados SSL
       - ./data/certbot/www:/var/www/certbot  # Desafíos de Certbot
+      - ./data/certbot/log/letsencrypt:/var/log/letsencrypt  # logs de letsencrypt
     # Entrypoint script that:
     # 1. Sets up a trap for graceful shutdown
     # 2. Runs certificate renewal check every 12 hours
     # 3. Reloads Nginx after successful renewal
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --post-hook \"docker exec nginx nginx -s reload\"; sleep 12h & wait $${!}; done;'"
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --disable-hook-validation --post-hook \"docker-compose exec nginx nginx -s reload\"; sleep 12h & wait $${!}; done;'"    
     restart: unless-stopped    # Ensures the container restarts automatically unless explicitly stopped
 
 # External network configuration
