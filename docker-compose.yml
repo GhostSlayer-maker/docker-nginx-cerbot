@@ -10,7 +10,7 @@ services:
       - "443:443"                   # HTTPS port mapping
     volumes:
       - ./data/nginx/nginx.conf:/etc/nginx/conf.d/default.conf  # Configuración de Nginx
-      - ./data/certbot/certificate/live:/etc/letsencrypt  # Certificados SSL
+      - ./data/certbot/certificate:/etc/letsencrypt  # Certificados SSL
       - ./data/certbot/www:/var/www/certbot  # Desafíos de Certbot
       - ./data/nginx/logs:/var/log/nginx     # logs
 
@@ -19,7 +19,7 @@ services:
     image: certbot/certbot:latest    # Uses the official Certbot image
     container_name: certbot          # Explicitly names the container for easier reference
     volumes:
-      - ./data/certbot/certificate/live:/etc/letsencrypt  # Certificados SSL
+      - ./data/certbot/certificate:/etc/letsencrypt  # Certificados SSL
       - ./data/certbot/www:/var/www/certbot  # Desafíos de Certbot
       - ./data/certbot/log/letsencrypt:/var/log/letsencrypt  # logs de letsencrypt
     # Entrypoint script that:
