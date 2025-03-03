@@ -3,3 +3,4 @@ data/nginx/logs
 bstockmanager.com
 test.bstockmanager.com
 data/certbot/log
+data/certbot/certificate/live
