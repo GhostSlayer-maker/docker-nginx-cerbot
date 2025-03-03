@@ -12,7 +12,7 @@ services:
       - ./data/nginx/nginx.conf:/etc/nginx/conf.d/default.conf  # Configuración de Nginx
       - ./data/certbot/certificate/live:/etc/letsencrypt  # Certificados SSL
       - ./data/certbot/www:/var/www/certbot  # Desafíos de Certbot
-      - ./data/nginx/logs:/var/log/nginx          # logs
+      - ./data/nginx/logs:/var/log/nginx     # logs
 
   # Certbot service - Handles SSL certificate automation
   certbot:
