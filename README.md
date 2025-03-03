@@ -14,7 +14,7 @@ cd docker-nginx-cerbot
 
 Crear certificados de los dominios si no existen
 ```
-docker-compose run --rm certbot certonly --webroot --webroot-path /data/certbot/certificate/live -d bstockmanager.com -d test.bstockmanager.com --email angel.belephantit@gmail.com --agree-tos --non-interactive
+docker-compose run --rm certbot certonly --webroot --webroot-path /data/certbot/certificate -d bstockmanager.com -d test.bstockmanager.com --email angel.belephantit@gmail.com --agree-tos --non-interactive
 ```
 
 Iniciar servicio en segundo plano
