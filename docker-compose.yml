@@ -4,7 +4,7 @@ services:
     image: nginx:latest    # Uses the official latest Nginx image from Docker Hub
     networks:
       - docker_odoo_guamay
-      - odoo17-belephantit-preprod_default    # Connects to both Odoo networks for routing
+      - odoo17_network    # Connects to both Odoo networks for routing
     ports:
       - "80:80"                     # HTTP port mapping
       - "443:443"                   # HTTPS port mapping
@@ -33,5 +33,5 @@ services:
 networks:
   docker_odoo_guamay:
     external: true    # Uses pre-existing network created by Odoo's main docker-compose for production environment
-  odoo17-belephantit-preprod_default:
+  odoo17_network:
     external: true    # Uses pre-existing network created by Odoo's pre-production environment setup
